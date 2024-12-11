@@ -79,7 +79,7 @@ function openFile(file) {
   // Check file type (e.g., .mp4 for video)
   const fileExtension = file.name.split('.').pop().toLowerCase();
 
-  if (fileExtension === 'mp4') {
+  if (fileExtension === 'mp4' || fileExtension === 'txt') {
     const videoElement = document.createElement('video');
     videoElement.src = file.download_url;
     videoElement.controls = true;
