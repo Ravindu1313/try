@@ -24,25 +24,46 @@ const fileViewerElement = document.getElementById('file-viewer');
 const fileTitleElement = document.getElementById('file-title');
 const filePlayerElement = document.getElementById('file-player');
 const searchBarElement = document.getElementById('search-bar');
+const backButton = document.getElementById('back-btn');
+let currentPath = ''; // To track the current directory
 
-// Fetch files from GitHub repository
-async function fetchFiles() {
+// Function to fetch files and directories from a given path
+async function fetchFiles(path = '') {
   try {
-    const response = await fetch(repoUrl);
+    const response = await fetch(repoUrl + path);
     const files = await response.json();
 
-    // Filter files and display
+    // Clear previous content
+    fileListElement.innerHTML = '';
+
+    // If it's an empty directory or an error, show a message
+    if (!Array.isArray(files) || files.length === 0) {
+      fileListElement.innerHTML = "<p>No files or directories found here.</p>";
+      return;
+    }
+
+    // Loop through files and directories
     files.forEach(file => {
+      const fileItem = document.createElement('div');
+      fileItem.classList.add('file-item');
+      
       if (file.type === 'file') {
-        const fileItem = document.createElement('div');
-        fileItem.classList.add('file-item');
+        // Display files (like videos)
         fileItem.innerHTML = `
           <i class="fas fa-file-video"></i><br>
           <strong>${file.name}</strong>
         `;
         fileItem.onclick = () => openFile(file);
-        fileListElement.appendChild(fileItem);
+      } else if (file.type === 'dir') {
+        // Display directories
+        fileItem.innerHTML = `
+          <i class="fas fa-folder"></i><br>
+          <strong>${file.name}</strong>
+        `;
+        fileItem.onclick = () => openDirectory(file.path);
       }
+
+      fileListElement.appendChild(fileItem);
     });
   } catch (error) {
     console.error("Error fetching files: ", error);
@@ -72,6 +93,25 @@ function openFile(file) {
   fileViewerElement.style.display = 'flex';
 }
 
+// Open directory (navigate into it)
+function openDirectory(path) {
+  currentPath = path; // Set the current directory path
+  fetchFiles(path); // Fetch and display contents of the directory
+  backButton.style.display = 'block'; // Show the "back" button
+}
+
+// Back to the previous directory
+function goBack() {
+  const pathParts = currentPath.split('/');
+  pathParts.pop(); // Remove last directory from the path
+  currentPath = pathParts.join('/');
+  fetchFiles(currentPath); // Fetch and display contents of the parent directory
+
+  if (currentPath === '') {
+    backButton.style.display = 'none'; // Hide the back button when at the root
+  }
+}
+
 // Close file viewer
 function closeViewer() {
   fileViewerElement.style.display = 'none';
@@ -92,5 +132,8 @@ searchBarElement.addEventListener('input', () => {
   });
 });
 
-// Initialize file manager
+// Initialize file manager (fetch root files and dirs)
 fetchFiles();
+
+// Set the "back" button's click handler
+backButton.addEventListener('click', goBack);
