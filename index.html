@@ -1,39 +1,36 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Simple Website</title>
-  <style>
-    /* Add basic styling */
-
-
-    .container {
-      text-align: center;
-    }
-
-    h1 {
-      color: #ffd700; /* Gold color */
-    }
-
-    a {
-      color: #1e90ff; /* Blue color */
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <title>GitHub File Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For icons -->
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to My Website</h1>
-    <p>This is a simple HTML page hosted on GitHub Pages.</p>
-    <p>
-      Check out my <a href="https://github.com" target="_blank">GitHub profile</a>.
-    </p>
+  <div id="file-manager">
+    <header>
+      <h1>GitHub File Manager</h1>
+      <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search files...">
+      </div>
+    </header>
+
+    <div id="file-list">
+      <!-- List of files will be displayed here -->
+    </div>
+
+    <div id="file-viewer" style="display: none;">
+      <div id="file-info">
+        <button id="close-btn" onclick="closeViewer()">Close</button>
+        <h2 id="file-title"></h2>
+        <div id="file-player">
+          <!-- Video player will be injected here -->
+        </div>
+      </div>
+    </div>
   </div>
-  <video width="100%" controls src="/try/GAxdKxn7oPT8msUEAN1wR7yH-2cebmdjAAAF.mp4"></video>
+
+  <script src="script.js"></script>
 </body>
 </html>
