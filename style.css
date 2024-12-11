@@ -53,6 +53,16 @@ header h1 {
   background-color: #f0f0f0;
 }
 
+#back-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 #file-viewer {
   position: fixed;
   top: 0;
@@ -82,10 +92,8 @@ header h1 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 20px;
 }
 
-#file-player video {
-  width: 100%;
-  height: auto;
+#file-player {
+  margin-top: 20px;
 }
