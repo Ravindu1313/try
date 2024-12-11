@@ -82,7 +82,7 @@ header h1 {
   border-radius: 10px;
   text-align: center;
   width: 80%;
-  max-width: 800px;
+  max-width: 100%;
 }
 
 #close-btn {
