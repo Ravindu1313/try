@@ -96,4 +96,5 @@ header h1 {
 
 #file-player {
   margin-top: 20px;
+  max-width: 100vw;
 }
