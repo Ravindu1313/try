@@ -1,0 +1,28 @@
+[
+  {
+    "video_name": "Sample Video 1",
+    "chunks": [
+      {
+        "chunk_name": "video1_chunk_1.mp4",
+        "url": "https://archive.org/download/SampleVideo_1280x720_1mb/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        "chunk_name": "video1_chunk_2.mp4",
+        "url": "https://archive.org/download/SampleVideo2_1280x720_1mb/SampleVideo2_1280x720_1mb.mp4"
+      }
+    ]
+  },
+  {
+    "video_name": "Sample Video 2",
+    "chunks": [
+      {
+        "chunk_name": "video2_chunk_1.mp4",
+        "url": "https://archive.org/download/SampleVideo3_1280x720_1mb/SampleVideo3_1280x720_1mb.mp4"
+      },
+      {
+        "chunk_name": "video2_chunk_2.mp4",
+        "url": "https://archive.org/download/SampleVideo4_1280x720_1mb/SampleVideo4_1280x720_1mb.mp4"
+      }
+    ]
+  }
+]
