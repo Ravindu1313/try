@@ -82,7 +82,7 @@ function nextF(){
 }
 
 function prevF(){
-  ind = currentFile >=1 ? currentFile-1 : null;
+  ind = currentFile > 0 ? currentFile-1 : null;
   if(ind){
     openFile(fls[ind]);
   }
