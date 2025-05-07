@@ -9,6 +9,8 @@ function getURLParameters() {
 // Get GitHub username and repository name from URL parameters
 const { username, repoName } = getURLParameters();
 
+let fls=[];
+
 // If parameters are missing, display an error
 if (!username || !repoName) {
   document.body.innerHTML = "<h1>Error: Please provide 'username' and 'repo' parameters in the URL.</h1>";
@@ -26,7 +28,7 @@ const filePlayerElement = document.getElementById('file-player');
 const searchBarElement = document.getElementById('search-bar');
 const backButton = document.getElementById('back-btn');
 let currentPath = ''; // To track the current directory
-
+let currentFile = 0;
 // Function to fetch files and directories from a given path
 async function fetchFiles(path = '') {
   try {
@@ -41,7 +43,7 @@ async function fetchFiles(path = '') {
       fileListElement.innerHTML = "<p>No files or directories found here.</p>";
       return;
     }
-
+    fls=[];
     // Loop through files and directories
     files.forEach(file => {
       const fileItem = document.createElement('div');
@@ -53,6 +55,7 @@ async function fetchFiles(path = '') {
           <i class="fas fa-file-video"></i><br>
           <strong>${file.name}</strong>
         `;
+        fls.push(file);
         fileItem.onclick = () => openFile(file);
       } else if (file.type === 'dir') {
         // Display directories
@@ -71,9 +74,24 @@ async function fetchFiles(path = '') {
   }
 }
 
+function nextF(){
+  ind =fls.length > currentFile ? currentFile+1 : null;
+  if(ind){
+    openFile(fls[ind]);
+  }
+}
+
+function prevF(){
+  ind = currentFile >=1 ? currentFile-1 : null;
+  if(ind){
+    openFile(fls[ind]);
+  }
+}
+
 // Open file (video player or file viewer)
 function openFile(file) {
   // Set file title
+  currentFile = fls.indexOf(file);
   fileTitleElement.textContent = file.name;
 
   // Check file type (e.g., .mp4 for video)
