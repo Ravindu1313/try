@@ -76,14 +76,14 @@ async function fetchFiles(path = '') {
 
 function nextF(){
   ind =fls.length > currentFile ? currentFile+1 : null;
-  if(ind){
+  if(ind!=null){
     openFile(fls[ind]);
   }
 }
 
 function prevF(){
   ind = currentFile > 0 ? currentFile-1 : null;
-  if(ind){
+  if(ind!=null){
     openFile(fls[ind]);
   }
 }
