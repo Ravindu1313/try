@@ -113,3 +113,11 @@ video{
   justify-content:space-between;
   align-items:center;
 }
+n-p-control{
+  margin:5px;
+  padding:5px;
+  background:blue;
+  color:white;
+  font-weight:900;
+  font-size:15px;
+}
